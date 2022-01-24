@@ -142,20 +142,15 @@
         <div class="col-md-6">
           <div class="form-group">
             <?= form_label('Inspection Date', 'ins_date_sel') ?>
-            <div class="input-group date" id="ins_date" data-target-input="nearest" >
+            <div class="" id="ins_date" data-target-input="nearest" >
               <?= form_input([
-              'class' => "form-control datetimepicker-input",
+              'class' => "form-control",
               'id' => "ins_date_sel",
               'name' => "ins_date",
-              'data-target' => "#ins_date",
-              'data-toggle' => "datetimepicker",
-              'placeholder' => "Select Inspection Date",
+              'type' => 'date',
               'autocomplete' => "off",
-              'value' => (!empty(set_value('ins_date'))) ? set_value('ins_date') : date('m/d/Y', strtotime($data['ins_date']))
+              'value' => (!empty(set_value('ins_date'))) ? set_value('ins_date') : $data['ins_date']
               ]) ?>
-              <div class="input-group-append" data-target="#ins_date" data-toggle="datetimepicker">
-                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-              </div>
             </div>
             <?= form_error('ins_date') ?>
           </div>
@@ -406,7 +401,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[engine]', $cond, $condition->engine, [
+            <?= form_dropdown('condition[engine]', $cond, $condition->engine ? $condition->engine : 'B', [
             'class' => 'form-control',
             'id' => "engine"
             ]) ?>
@@ -417,7 +412,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[chassis]', $cond, $condition->chassis, [
+            <?= form_dropdown('condition[chassis]', $cond, $condition->chassis ? $condition->chassis : 'B', [
             'class' => 'form-control',
             'id' => "chassis"
             ]) ?>
@@ -428,7 +423,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[body_cabin]', $cond, $condition->body_cabin, [
+            <?= form_dropdown('condition[body_cabin]', $cond, $condition->body_cabin ? $condition->body_cabin : 'B', [
             'class' => 'form-control',
             'id' => "body_cabin"
             ]) ?>
@@ -439,7 +434,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[transmission]', $cond, $condition->transmission, [
+            <?= form_dropdown('condition[transmission]', $cond, $condition->transmission ? $condition->transmission : 'B', [
             'class' => 'form-control',
             'id' => "transmission"
             ]) ?>
@@ -450,7 +445,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[load_body]', $cond, $condition->load_body, [
+            <?= form_dropdown('condition[load_body]', $cond, $condition->load_body ? $condition->load_body : 'B', [
             'class' => 'form-control',
             'id' => "load_body"
             ]) ?>
@@ -461,7 +456,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[steering]', $cond, $condition->steering, [
+            <?= form_dropdown('condition[steering]', $cond, $condition->steering ? $condition->steering : 'B', [
             'class' => 'form-control',
             'id' => "steering"
             ]) ?>
@@ -472,7 +467,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[tyres]', $cond, $condition->tyres, [
+            <?= form_dropdown('condition[tyres]', $cond, $condition->tyres ? $condition->tyres : 'B', [
             'class' => 'form-control',
             'id' => "tyres"
             ]) ?>
@@ -483,7 +478,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[electrical_parts]', $cond, $condition->electrical_parts, [
+            <?= form_dropdown('condition[electrical_parts]', $cond, $condition->electrical_parts ? $condition->electrical_parts : 'B', [
             'class' => 'form-control',
             'id' => "electrical_parts"
             ]) ?>
@@ -494,7 +489,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[battery]', $cond, $condition->battery, [
+            <?= form_dropdown('condition[battery]', $cond, $condition->battery ? $condition->battery : 'B', [
             'class' => 'form-control',
             'id' => "battery"
             ]) ?>
@@ -505,7 +500,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[ac_system]', $cond, $condition->ac_system, [
+            <?= form_dropdown('condition[ac_system]', $cond, $condition->ac_system ? $condition->ac_system : 'B', [
             'class' => 'form-control',
             'id' => "ac_system"
             ]) ?>
@@ -516,7 +511,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[upholstery]', $cond, $condition->upholstery, [
+            <?= form_dropdown('condition[upholstery]', $cond, $condition->upholstery ? $condition->upholstery : 'B', [
             'class' => 'form-control',
             'id' => "upholstery"
             ]) ?>
@@ -527,7 +522,7 @@
         </div>
         <div class="col-md-1">
           <div class="form-group">
-            <?= form_dropdown('condition[hydraulic]', $cond, $condition->hydraulic, [
+            <?= form_dropdown('condition[hydraulic]', $cond, $condition->hydraulic ? $condition->hydraulic : 'B', [
             'class' => 'form-control',
             'id' => "hydraulic"
             ]) ?>
@@ -594,7 +589,7 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <?= form_dropdown('repunched', ['YES' => 'YES', 'NO' => 'NO'], (!empty(set_value('repunched'))) ? set_value('repunched') : $data['repunched'], [
+            <?= form_dropdown('repunched', ['YES' => 'YES', 'NO' => 'NO'], (!empty(set_value('repunched'))) ? set_value('repunched') : ($data['repunched'] ? $data['repunched'] : "NO"), [
             'class' => 'form-control',
             'id' => "repunched"
             ]) ?>

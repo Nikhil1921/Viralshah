@@ -185,7 +185,7 @@ class Task extends MY_Controller {
 
             $this->load->helper('string');
             $config = [
-                'upload_path'      => "./assets/images/vehicles/",
+                'upload_path'      => "assets/images/vehicles/",
                 'allowed_types'    => 'jpg|jpeg|png',
                 'file_name'        => random_string('nozero', 5),
                 'file_ext_tolower' => TRUE
@@ -196,10 +196,29 @@ class Task extends MY_Controller {
             if (!$this->upload->do_upload("image")) {
                 flashMsg(0, "", strip_tags($this->upload->display_errors()), $this->redirect.'/upload_image/'.$id);
             }else{
+                $img = $this->upload->data("file_name");
+                
+                $source_path = $this->upload->data('full_path');
+                $target_path = $this->upload->data('file_path');
+                $config_manip = array(
+                    'image_library' => 'gd2',
+                    'source_image' => $source_path,
+                    'new_image' => $target_path,
+                    'maintain_ratio' => TRUE,
+                    'create_thumb' => TRUE,
+                    'thumb_marker' => '',
+                    'width' => 520,
+                    'height' => 350
+                );
+
+                $this->load->library('image_lib', $config_manip);
+                
+                $this->image_lib->clear();
+                
                 $image_name = $this->input->post('image_name');
                 $imgs['images'] = (array) json_decode($imgs['images']);
                 $unlink = $imgs['images'][$image_name];
-                $imgs['images'][$image_name] = $this->upload->data("file_name");
+                $imgs['images'][$image_name] = $img;
 
                 if ($this->main->update(['id' => d_id($id)], ['images' => json_encode($imgs['images'])], $this->table)) 
                 {
@@ -207,8 +226,8 @@ class Task extends MY_Controller {
                         unlink($config['upload_path'].$unlink);
                     flashMsg(1, "Image upload successful.", "", $this->redirect.'/upload_image/'.$id);
                 }else{
-                    if (file_exists($config['upload_path'].$this->upload->data("file_name")))
-                        unlink($config['upload_path'].$this->upload->data("file_name"));
+                    if (file_exists($config['upload_path'].$img))
+                        unlink($config['upload_path'].$img);
                     flashMsg(0, "", "Image upload not successful.", $this->redirect.'/upload_image/'.$id);
                 }
             }

@@ -142,20 +142,15 @@
         <div class="col-md-6">
           <div class="form-group">
             <?= form_label('Inspection Date', 'ins_date_sel') ?>
-            <div class="input-group date" id="ins_date" data-target-input="nearest" >
+            <div class="" id="ins_date" data-target-input="nearest" >
               <?= form_input([
-              'class' => "form-control datetimepicker-input",
+              'class' => "form-control",
               'id' => "ins_date_sel",
               'name' => "ins_date",
-              'data-target' => "#ins_date",
-              'data-toggle' => "datetimepicker",
-              'placeholder' => "Select Inspection Date",
+              'type' => 'date',
               'autocomplete' => "off",
               'value' => set_value('ins_date')
               ]) ?>
-              <div class="input-group-append" data-target="#ins_date" data-toggle="datetimepicker">
-                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-              </div>
             </div>
             <?= form_error('ins_date') ?>
           </div>

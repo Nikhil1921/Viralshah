@@ -7,7 +7,7 @@
    <?php $veh_sender = $this->main->check('vehicle_sender', ['id' => $data['veh_sender']], 'name');
       $veh_emp = $this->main->check('vehicle_sender_employee', ['id' => $data['veh_sender_emp']], 'emp_code');
       $city = $this->main->check('city', ['id' => $data['city_id']], 'city');
-      $emp_code = $this->main->check('employees', ['id' => $data['city_id']], 'emp_code'); ?>
+      $emp_code = $this->main->check('employees', ['id' => $data['emp_id']], 'emp_code'); ?>
    <div class="container" style="background-color: #fff;">
       <div class="row">
          <div class="col-12 ">
@@ -22,7 +22,7 @@
       </div>
       <div class="row">
          <div class="col-6 ">
-            <p><b>Ref.No.: </b><span><?= $data['ref_no'] ?></span></p>
+            <p><b>Ref.No.: </b><span><?= $data['id'] ?></span></p>
          </div>
          <div class="col-6 text-right" >
             <p><b>Date: </b><span><?= date("d-m-Y", strtotime($data['created_at'])) ?></span></p>
@@ -437,15 +437,11 @@
                         <td id="tbl_td" style="border:1px solid black;">
                            <strong>APPROX NEW VEHICLE PRICE</strong> (as on today)
                         </td>
-                        <td id="tbl_td" style="border:1px solid black; width: 10%;">
-                           <?= $condition->approx_today ?>
-                        </td>
+                        <td id="tbl_td" style="border:1px solid black; width: 10%;"><?= $condition->approx_today ?></td>
                         <td id="tbl_td" style="border:1px solid black;">
                            <strong>APPROX NEW VEHICLE PRICE</strong> (at purchase time)
                         </td>
-                        <td id="tbl_td" style="border:1px solid black; width: 5%;">
-                           <?= $condition->approx_purchase ?>
-                        </td>
+                        <td id="tbl_td" style="border:1px solid black; width: 10%;"><?= $condition->approx_purchase ?></td>
                      </tr>
                      <tr>
                         <td id="tbl_td" style="border:1px solid black;">
@@ -491,7 +487,7 @@
                      </tr>
                      <tr>
                         <td id="tbl_td" style="border: 1px solid black;">
-                           <span style="font-size: 11px; ">1) I had not verified the original docs. which is to be checked at your end. 2) This report is valid for 30 days from the inspection date. 2) this report is addressed and is to be used solely by the said party for the stated purpose only and I am not liable for any loss or liability sustained by any third party relying on this Valuation Report 3) Encl : Photo of vehicle.</span>
+                           <span style="font-size: 11px; ">1) I had not verified the original docs. which is to be checked at your end. 2) This report is valid for 30 days from the inspection date. 3) this report is addressed and is to be used solely by the said party for the stated purpose only and I am not liable for any loss or liability sustained by any third party relying on this Valuation Report 4) Encl : Photo of vehicle.</span>
                         </td>
                      </tr>
                   </tbody>
@@ -562,7 +558,7 @@
             <?= anchor($url, '<i class="fas fa-arrow-circle-left"></i> Go Back', 'class="btn btn-outline-danger col-sm-2 float-right" style="margin-right: 5px;"'); ?>
             <?= form_button([ 'content' => 'Print',
                'type'  => 'button',
-               'onclick'  => 'document.title=\''.$data['veh_no'].'\'; window.print()',
+               'onclick'  => 'document.title=\''.$data['id'].' '.$data['veh_no'].'\'; window.print()',
                'class' => 'btn btn-outline-primary col-sm-2 float-right mr-2']) ?>
          </div>
       </div>
