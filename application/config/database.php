@@ -29,9 +29,9 @@ if($_SERVER['HTTP_HOST'] == 'localhost'){
     $db['default'] = array(
         'dsn'   => '',
         'hostname' => 'localhost',
-        'username' => 'denseeqq_demo',
-        'password' => 'demo@321',
-        'database' => 'denseeqq_viralshah',
+        'username' => 'densehwm_demo',
+        'password' => 'Densetek@2018',
+        'database' => 'densehwm_viralshah',
         'dbdriver' => 'mysqli',
         'dbprefix' => '',
         'pconnect' => (ENVIRONMENT !== 'production'),

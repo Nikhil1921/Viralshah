@@ -212,6 +212,7 @@ class Task extends MY_Controller {
                 );
 
                 $this->load->library('image_lib', $config_manip);
+                $this->image_lib->resize();
                 
                 $this->image_lib->clear();
                 

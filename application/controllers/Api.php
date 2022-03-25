@@ -254,6 +254,25 @@ class Api extends CI_Controller {
             echoRespnse(400, $response);
         }else{
             $imgs['images'] = (array) json_decode($imgs['images']);
+            
+            $source_path = $this->upload->data('full_path');
+            $target_path = $this->upload->data('file_path');
+            $config_manip = array(
+                'image_library' => 'gd2',
+                'source_image' => $source_path,
+                'new_image' => $target_path,
+                'maintain_ratio' => TRUE,
+                'create_thumb' => TRUE,
+                'thumb_marker' => '',
+                'width' => 520,
+                'height' => 350
+            );
+
+            $this->load->library('image_lib', $config_manip);
+            $this->image_lib->resize();
+            
+            $this->image_lib->clear();
+
             $unlink = $imgs['images'][$image_name];
             $imgs['images'][$image_name] = $this->upload->data("file_name");
 

@@ -84,7 +84,7 @@ class Home extends MY_Controller {
             $id = $this->main->update(['id' => $this->id], $post, $this->table);
 
             if ($id) {
-                $user = $this->main->get($this->table, 'id adminId, name, mobile, email, role, lead_type', ['id' => $this->id]);
+                $user = $this->main->get($this->table, 'id adminId, name, mobile, email', ['id' => $this->id]);
                 $this->session->set_userdata($user);
             }
 

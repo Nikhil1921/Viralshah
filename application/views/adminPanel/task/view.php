@@ -545,13 +545,13 @@
       </div>
       <?php $imgs = json_decode($data['images']); ?>
       <div class="row " style="width: 100%; ">
-         <?php foreach ($imgs as $k => $img): ?>
+         <?php foreach ($imgs as $k => $img): if($img): ?>
          <div class="col-md-6 " id="rem_img_<?= $k ?>" style="">
             <div style="width: 100%; margin-top: 0px;">
                <img class="veh"  src="<?= base_url('assets/images/vehicles/'.$img) ?>" onclick="return confirm('Remove Image?') ? document.getElementById('rem_img_<?= $k ?>').remove() : false" onerror="this.style.display='none'">
             </div>
          </div>
-         <?php endforeach ?>
+         <?php endif; endforeach ?>
       </div>
       <div class="row no-print">
          <div class="col-12">
