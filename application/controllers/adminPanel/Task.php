@@ -392,6 +392,16 @@ class Task extends MY_Controller {
                 'exact_length' => "%s is Invalid",
             ]
         ],
+        [
+            'field' => 'payment',
+            'label' => 'Payment',
+            'rules' => 'required|digit|max_length[10]',
+            'errors' => [
+                'required' => "%s is Required",
+                'numeric' => "%s is Invalid",
+                'max_length' => "Max 10 chars allowed",
+            ]
+        ],
         /* [
             'field' => 'app_no',
             'label' => 'Application No',

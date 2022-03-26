@@ -166,7 +166,6 @@
             'value' => set_value('loan')
             ]) ?>
             <?= form_error('loan') ?>
-            <span class="exist-check text-success"></span>
           </div>
         </div>
       </div>
